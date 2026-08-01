@@ -1,0 +1,196 @@
+{% extends "base.html" %}
+
+{% block title %}
+
+Home
+
+{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="container">
+
+        <h1>
+            Fingerprint Liveness Detection
+        </h1>
+
+        <p>
+
+            AI Powered Presentation Attack Detection (PAD)
+
+            <br>
+
+            Detect Live and Spoof Fingerprints with Deep Learning
+
+        </p>
+
+        <a href="/detect">
+
+            <button class="primary-btn">
+
+                Start Detection
+
+            </button>
+
+        </a>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="features">
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-bolt"></i>
+
+            <h3>
+
+                Fast Detection
+
+            </h3>
+
+            <p>
+
+                Detect fingerprints within milliseconds using MobileNetV3.
+
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-shield-halved"></i>
+
+            <h3>
+
+                Secure Authentication
+
+            </h3>
+
+            <p>
+
+                Prevent presentation attacks using AI-based fingerprint analysis.
+
+            </p>
+
+        </div>
+
+        <div class="feature-card">
+
+            <i class="fa-solid fa-microchip"></i>
+
+            <h3>
+
+                Deep Learning
+
+            </h3>
+
+            <p>
+
+                Powered by MobileNetV3-Small trained for fingerprint liveness detection.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="feature-card">
+
+        <h2>
+
+            How It Works
+
+        </h2>
+
+        <br>
+
+        <h3>
+
+            📤 Upload Fingerprint
+
+        </h3>
+
+        <br>
+
+        ↓
+
+        <br><br>
+
+        <h3>
+
+            🤖 AI Analysis
+
+        </h3>
+
+        <br>
+
+        ↓
+
+        <br><br>
+
+        <h3>
+
+            🟢 LIVE / 🔴 SPOOF
+
+        </h3>
+
+    </div>
+
+</section>
+
+<footer class="footer">
+
+    <div class="footer-content">
+
+        <div class="footer-logo">
+            <i class="fa-solid fa-shield-halved"></i>
+            <h2>FingerSecure AI</h2>
+            <p>AI Powered Fingerprint Liveness Detection System</p>
+        </div>
+
+        <div class="footer-links">
+
+            <div>
+                <h3>Navigation</h3>
+
+                <a href="/">Home</a>
+                <a href="/detection">Detection</a>
+                <a href="/about">About</a>
+                <a href="/contact">Contact</a>
+            </div>
+
+            <div>
+                <h3>Technology</h3>
+
+                <p>Python</p>
+                <p>PyTorch</p>
+                <p>Flask</p>
+                <p>MobileNetV3</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <hr>
+
+    <p class="copyright">
+
+        © 2026 FingerSecure AI |
+        Developed by <strong>Ram Sai Kumar</strong>
+
+    </p>
+
+</footer>
+{% endblock %}

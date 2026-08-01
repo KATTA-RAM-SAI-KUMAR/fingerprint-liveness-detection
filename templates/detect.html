@@ -1,0 +1,227 @@
+{% extends "base.html" %}
+
+{% block title %}Detection{% endblock %}
+
+{% block content %}
+
+<section class="hero">
+
+    <div class="container">
+
+        <h1>Fingerprint Liveness Detection</h1>
+
+        <p>
+            Upload a fingerprint image and let AI determine whether it is
+            <strong>LIVE</strong> or <strong>SPOOF</strong>.
+        </p>
+
+    </div>
+
+</section>
+
+<section class="container">
+
+    <div class="feature-card">
+
+        <h2>Upload Fingerprint</h2>
+
+        <br>
+
+        <form action="{{ url_for('predict') }}"
+              method="POST"
+              enctype="multipart/form-data">
+
+            <input
+                id="imageInput"
+                type="file"
+                name="image"
+                accept=".jpg,.jpeg,.png,.bmp"
+                required>
+
+            <br><br>
+
+            {% if image_path %}
+
+<img
+    id="previewImage"
+    src="{{ url_for('static', filename=image_path) }}"
+    class="preview-image show-preview">
+
+{% else %}
+
+<img
+    id="previewImage"
+    class="preview-image">
+
+{% endif %}
+            <br><br>
+
+            <div class="button-group">
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    Analyze Fingerprint
+
+                </button>
+
+                <button
+    type="button"
+    class="secondary-btn"
+    onclick="resetDetection()">
+
+    Reset
+
+</button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+    {% if prediction %}
+
+    <br>
+
+    <div class="feature-card">
+
+        {% if prediction=="LIVE" %}
+
+            <h2 style="color:#22C55E;">🟢 LIVE</h2>
+
+        {% else %}
+
+            <h2 style="color:#EF4444;">🔴 SPOOF</h2>
+
+        {% endif %}
+
+        <h3>
+
+            Confidence : {{ confidence }}%
+
+        </h3>
+
+        <br>
+
+        
+
+        <div class="confidence-bar">
+    <div class="confidence-fill"></div>
+</div>
+
+        <br><br>
+
+        <div class="features">
+
+            <div class="feature-card">
+
+                <h3>LIVE Score</h3>
+
+                <p>{{ live_score }}</p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>SPOOF Score</h3>
+
+                <p>{{ spoof_score }}</p>
+
+            </div>
+
+            <div class="feature-card">
+
+                <h3>Inference</h3>
+
+                <p>{{ inference }} ms</p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <br>
+
+    <div class="feature-card">
+
+        <h2>AI Analysis</h2>
+
+        <br>
+
+        <ul style="text-align:left;line-height:2;">
+
+            {% for item in analysis %}
+
+                <li>{{ item }}</li>
+
+            {% endfor %}
+
+        </ul>
+
+    </div>
+
+    {% endif %}
+
+    {% if error %}
+
+    <br>
+
+    <div class="feature-card">
+
+        <h2 style="color:#EF4444;">
+
+            {{ error }}
+
+        </h2>
+
+    </div>
+
+    {% endif %}
+
+</section>
+
+<script>
+
+
+
+function previewImage(event){
+
+    const file = event.target.files[0];
+
+    const preview = document.getElementById("previewImage");
+
+    if(file){
+
+        preview.src = URL.createObjectURL(file);
+
+        preview.style.display = "block";
+
+    }
+
+}
+
+window.onload = function(){
+
+    const fill = document.querySelector(".confidence-fill");
+
+    if(fill){
+
+        fill.style.width = "{{ confidence if confidence else 0 }}%";
+
+    }
+
+}
+
+function resetDetection(){
+
+    window.location.href = "{{ url_for('detect') }}";
+
+}
+
+</script>
+
+
+{% endblock %}
