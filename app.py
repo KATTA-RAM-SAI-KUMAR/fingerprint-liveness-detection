@@ -98,10 +98,10 @@ def detect():
     )
 
 
-@app.route("/contact")
-def contact():
+@app.route("/about")
+def about():
 
-    return render_template("contact.html")
+    return render_template("about.html")
 
 
 # ==================================================
